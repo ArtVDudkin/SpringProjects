@@ -56,7 +56,7 @@ public class IssueController {
         if (issue != null)
             return ResponseEntity.status(HttpStatus.OK).body(issue);
         else
-            throw new NoSuchElementException("Превышен лимит выдачи книг читателю");
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
     }
 
     // PUT /issue/{id} - Сделать запись о возврате книги по id выдачи

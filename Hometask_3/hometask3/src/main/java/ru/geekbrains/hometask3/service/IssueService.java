@@ -41,8 +41,9 @@ public class IssueService {
                     "\"находится на руках");
         }
         // можно проверить, что у читателя нет книг на руках (или его лимит не превышает в Х книг)
-        int books = issueRepository.countBooksIssuedToReader(request.getReaderId());
-        if (books <= maxAllowedBooks) {
+        int booksInHand = issueRepository.getIssuesByReader(request.getReaderId()).size();
+        System.out.println(booksInHand);
+        if (booksInHand < maxAllowedBooks) {
             Issue issue = new Issue(request.getBookId(), request.getReaderId());
             issueRepository.save(issue);
             return issue;
