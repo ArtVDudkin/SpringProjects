@@ -1,0 +1,5 @@
+application:
+  max-allowed-books: 5
+
+server:
+  port: 8090
