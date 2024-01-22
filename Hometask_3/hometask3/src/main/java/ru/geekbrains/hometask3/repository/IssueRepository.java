@@ -51,7 +51,7 @@ public class IssueRepository {
      * @return возвращает количество книг, которое уже взял читатель
      */
     public int countBooksIssuedToReader(long readerId) {
-        return issues.stream().filter(it -> Objects.equals(it.getId(), readerId) && it.getReturned_at() == null).toList().size();
+        return issues.stream().filter(it -> Objects.equals(it.getReaderId(), readerId) && it.getReturned_at() == null).toList().size();
 //                .collect(Collectors.toList()).size();
     }
 
@@ -61,7 +61,7 @@ public class IssueRepository {
      * @return возвращает список объектов типа Issue для конкретного читателя
      */
     public List<Issue> getIssuesByReader(long readerId) {
-        return issues.stream().filter(it -> Objects.equals(it.getId(), readerId)).collect(Collectors.toList());
+        return issues.stream().filter(it -> Objects.equals(it.getReaderId(), readerId)).collect(Collectors.toList());
     }
 
     /**

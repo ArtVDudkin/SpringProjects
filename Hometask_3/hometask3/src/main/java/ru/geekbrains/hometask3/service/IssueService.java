@@ -40,9 +40,8 @@ public class IssueService {
             throw new NoSuchElementException("Книга с идентификатором \"" + request.getBookId() +
                     "\"находится на руках");
         }
-        // можно проверить, что у читателя нет книг на руках (или его лимит не превышает в Х книг)
-        int booksInHand = issueRepository.getIssuesByReader(request.getReaderId()).size();
-        System.out.println(booksInHand);
+        // Проверяеть, что у читателя нет книг на руках (или его лимит не превышает в Х книг)
+        int booksInHand = issueRepository.countBooksIssuedToReader(request.getReaderId());
         if (booksInHand < maxAllowedBooks) {
             Issue issue = new Issue(request.getBookId(), request.getReaderId());
             issueRepository.save(issue);
