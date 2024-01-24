@@ -30,8 +30,8 @@
                 <th>Дата возврата</th>
             </tr>
             <tr th:each="issue: ${issues}">
-                <td th:text="${issue.getBookName()}"></td>
-                <td th:text="${issue.getReaderName()}"></td>
+                <td th:text="${issue.getBookId()}"></td>
+                <td th:text="${issue.getReaderId()}"></td>
                 <td th:text="${issue.getIssued_at().toLocalDate()}"></td>
                 <td th:text="${issue.getReturned_at().toLocalDate()}"
                     th:if="${issue.getReturned_at()}"></td>
