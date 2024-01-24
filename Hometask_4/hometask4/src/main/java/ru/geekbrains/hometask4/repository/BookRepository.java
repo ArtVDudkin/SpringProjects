@@ -51,7 +51,7 @@ public class BookRepository {
     }
 
     public List<Book> getAllBooks() {
-        return this.books;
+        return List.copyOf(this.books);
     }
 
 }

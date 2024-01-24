@@ -22,7 +22,7 @@ public class IssueRepository {
     }
 
     public List<Issue> getIssues() {
-        return issues;
+        return List.copyOf(issues);
     }
 
     /**
