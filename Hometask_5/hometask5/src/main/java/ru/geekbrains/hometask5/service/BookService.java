@@ -1,34 +1,18 @@
 package ru.geekbrains.hometask5.service;
 
-import org.springframework.stereotype.Service;
-import ru.geekbrains.hometask5.model.Book;
-import ru.geekbrains.hometask5.repository.BookRepository;
+import ru.geekbrains.hometask5.entity.BookEntity;
 
 import java.util.List;
+import java.util.Optional;
 
-@Service
-public class BookService {
+public interface BookService {
 
-    private final BookRepository bookRepository;
+    Optional<BookEntity> getBookById(long id);
 
-    public BookService(BookRepository bookRepository) {
-        this.bookRepository = bookRepository;
-    }
+    BookEntity addBook(BookEntity book);
 
-    public Book getBookById(long id) {
-        return bookRepository.getBookById(id);
-    }
+    void deleteBook(long id);
 
-    public Book addBook(Book book) {
-        return bookRepository.addBook(book);
-    }
-
-    public void deleteBook(long id) {
-        bookRepository.deleteBook(id);
-    }
-
-    public List<Book> getAllBooks() {
-        return bookRepository.getAllBooks();
-    }
+    List<BookEntity> getAllBooks();
 
 }

@@ -4,11 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.geekbrains.hometask5.model.Issue;
+import ru.geekbrains.hometask5.entity.IssueEntity;
 import ru.geekbrains.hometask5.service.IssueService;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 // @Slf4j - модуль lombok для логирования (см. в коде)
 @RestController
@@ -24,8 +25,8 @@ public class IssueController {
 
     // GET /issue/{id} - получить описание факта выдачи книги по id выдачи
     @GetMapping("/{id}")
-    public ResponseEntity<Issue> getIssue(@PathVariable long id) {
-        final Issue issue;
+    public ResponseEntity<Optional<IssueEntity>> getIssue(@PathVariable long id) {
+        final Optional<IssueEntity> issue;
         issue = issueService.getIssueById(id);
         if (issue == null) {
             System.out.println("Выдача: " + id + " не найдена");
@@ -38,17 +39,17 @@ public class IssueController {
 
     // GET /issue - получить все записи о выдаче книг
     @GetMapping
-    public ResponseEntity<List<Issue>> getAllIssues() {
+    public ResponseEntity<List<IssueEntity>> getAllIssues() {
         return ResponseEntity.status(HttpStatus.OK).body(issueService.getAllIssues());
     }
 
     // POST /issue - Создать новую запись о выдаче книги
     @PostMapping
-    public ResponseEntity<Issue> issueBook(@RequestBody IssueRequest request) {
+    public ResponseEntity<IssueEntity> issueBook(@RequestBody IssueRequest request) {
         // log.info("Получен запрос на выдачу: readerId = {}, bookId = {}", request.getReaderId(), request.getBookId());
-        final Issue issue;
+        final IssueEntity issue;
         try {
-            issue = issueService.issue(request);
+            issue = issueService.addIssue(request);
         } catch (NoSuchElementException e) {
             return ResponseEntity.notFound().build();
         }

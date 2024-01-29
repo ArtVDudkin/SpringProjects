@@ -9,20 +9,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import ru.geekbrains.hometask5.service.BookService;
 import ru.geekbrains.hometask5.service.IssueService;
 import ru.geekbrains.hometask5.service.ReaderService;
-
-import java.util.stream.Collectors;
+import ru.geekbrains.hometask5.service.ReaderServiceImpl;
 
 @Controller
 @RequestMapping("/ui")
 public class UIController {
 
-    @Autowired
+
     private final BookService bookService;
-    @Autowired
     private final ReaderService readerService;
-    @Autowired
     private final IssueService issueService;
 
+    @Autowired
     public UIController(BookService bookService, ReaderService readerService, IssueService issueService) {
         this.bookService = bookService;
         this.readerService = readerService;

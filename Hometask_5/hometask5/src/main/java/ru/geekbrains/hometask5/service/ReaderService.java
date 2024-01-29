@@ -1,38 +1,19 @@
 package ru.geekbrains.hometask5.service;
 
-import org.springframework.stereotype.Service;
-import ru.geekbrains.hometask5.model.Reader;
-import ru.geekbrains.hometask5.repository.ReaderRepository;
+import ru.geekbrains.hometask5.entity.ReaderEntity;
 
 import java.util.List;
+import java.util.Optional;
 
-@Service
-public class ReaderService {
+public interface ReaderService {
 
-    private final ReaderRepository readerRepository;
+    Optional<ReaderEntity> getReaderById(long id);
 
-    public ReaderService(ReaderRepository readerRepository) {
-        this.readerRepository = readerRepository;
-    }
+    ReaderEntity addReader(ReaderEntity reader);
+    Optional<ReaderEntity> updateReader(long id, ReaderEntity reader);
 
-    public Reader getReaderById(long id) {
-        return readerRepository.getReaderById(id);
-    }
+    void deleteReader(long id);
 
-    public Reader addReader(Reader reader) {
-        return readerRepository.addReader(reader);
-    }
-
-    public Reader updateReader(long id, Reader reader) {
-        return readerRepository.updateReader(id, reader);
-    }
-
-    public void deleteReader(long id) {
-        readerRepository.deleteReader(id);
-    }
-
-    public List<Reader> getAllReaders() {
-        return readerRepository.getAllReaders();
-    }
+    List<ReaderEntity> getAllReaders();
 
 }

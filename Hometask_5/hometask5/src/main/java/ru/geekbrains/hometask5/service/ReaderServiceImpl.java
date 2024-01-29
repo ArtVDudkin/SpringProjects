@@ -1,0 +1,46 @@
+package ru.geekbrains.hometask5.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import ru.geekbrains.hometask5.entity.ReaderEntity;
+import ru.geekbrains.hometask5.repository.ReaderRepository;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class ReaderServiceImpl implements ReaderService {
+
+    private final ReaderRepository readerRepository;
+    @Autowired
+
+    public ReaderServiceImpl(ReaderRepository readerRepository) {
+        this.readerRepository = readerRepository;
+    }
+
+    public Optional<ReaderEntity> getReaderById(long id) {
+        return readerRepository.findById(id);
+    }
+
+    public ReaderEntity addReader(ReaderEntity reader) {
+        return readerRepository.save(reader);
+    }
+
+    public Optional<ReaderEntity> updateReader(long id, ReaderEntity reader) {
+        readerRepository.findById(id) // returns Optional<Reader>
+                .ifPresent(reader1 -> {
+                    reader1.setName(reader.getName());
+                    readerRepository.save(reader1);
+                });
+        return readerRepository.findById(id);
+    }
+
+    public void deleteReader(long id) {
+        readerRepository.deleteById(id);
+    }
+
+    public List<ReaderEntity> getAllReaders() {
+        return readerRepository.findAll();
+    }
+
+}
