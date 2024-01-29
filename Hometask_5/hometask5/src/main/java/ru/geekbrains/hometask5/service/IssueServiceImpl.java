@@ -59,11 +59,13 @@ public class IssueServiceImpl implements IssueService {
     }
 
     public Optional<IssueEntity> returnBook(long issueId) {
-        Optional<IssueEntity> issue = issueRepository.findById(issueId);
-        if(issue != null) {
-            issue.get().setReturned_at(LocalDateTime.now());
-        }
-        return issue;
+
+        issueRepository.findById(issueId) // returns Optional<Reader>
+                .ifPresent(issue1 -> {
+                    issue1.setReturned_at(LocalDateTime.now());
+                    issueRepository.save(issue1);
+                });
+        return issueRepository.findById(issueId);
     }
 
     public List<IssueEntity> getIssuesByReader(long id) {
