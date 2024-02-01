@@ -1,28 +1,35 @@
 package ru.geekbrains.hometask5.entity;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name="entities")
+@Schema(name = "Выдача")
 public class IssueEntity {
 
     public static long sequence = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Schema(name = "Id выдачи")
     private final Long id;
     @Column(name = "bookId", nullable = false)
+    @Schema(name = "Id книги")
     private final Long bookId;
     @Column(name = "readerId", nullable = false)
+    @Schema(name = "Id читателя")
     private final Long readerId;
 
     // Дата выдачи
     @Column(name = "issued_at")
+    @Schema(name = "Дата выдачи книги")
     private final LocalDateTime issued_at;
     // Дата возврата
     @Column(name = "returned_at")
+    @Schema(name = "Дата возврата книги")
     private LocalDateTime returned_at;
 
     public IssueEntity(long bookId, long readerId) {

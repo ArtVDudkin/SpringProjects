@@ -1,17 +1,21 @@
 package ru.geekbrains.hometask5.entity;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 
 @Entity
 @Table(name="books")
+@Schema(name = "Книга")
 public class BookEntity {
 
     public static long sequence = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Schema(name = "Id книги")
     private final long id;
     @Column(name = "name", nullable = false, length = 255)
+    @Schema(name = "Наименование книги", minimum ="3", maximum = "50")
     private final String name;
 
     public BookEntity() {
