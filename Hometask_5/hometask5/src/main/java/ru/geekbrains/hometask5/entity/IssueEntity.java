@@ -14,22 +14,17 @@ public class IssueEntity {
     public static long sequence = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Schema(name = "Id выдачи")
     private final Long id;
     @Column(name = "bookId", nullable = false)
-    @Schema(name = "Id книги")
     private final Long bookId;
     @Column(name = "readerId", nullable = false)
-    @Schema(name = "Id читателя")
     private final Long readerId;
 
     // Дата выдачи
     @Column(name = "issued_at")
-    @Schema(name = "Дата выдачи книги")
     private final LocalDateTime issued_at;
     // Дата возврата
     @Column(name = "returned_at")
-    @Schema(name = "Дата возврата книги")
     private LocalDateTime returned_at;
 
     public IssueEntity(long bookId, long readerId) {
@@ -49,7 +44,7 @@ public class IssueEntity {
 
     @JsonCreator
     public IssueEntity(long id, long bookId, long readerId) {
-        this.id = sequence++;
+        this.id = id;
         this.bookId = bookId;
         this.readerId = readerId;
         this.issued_at = LocalDateTime.now();

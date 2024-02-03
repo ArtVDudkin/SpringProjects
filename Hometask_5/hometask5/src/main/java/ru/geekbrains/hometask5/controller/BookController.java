@@ -19,8 +19,9 @@ import java.util.Optional;
 @Tag(name = "Book")
 public class BookController {
 
-    private final BookService bookService;
     @Autowired
+    private final BookService bookService;
+
     public BookController(BookService bookService) {
         this.bookService = bookService;
     }

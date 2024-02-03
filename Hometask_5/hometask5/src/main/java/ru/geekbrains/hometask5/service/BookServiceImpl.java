@@ -11,25 +11,29 @@ import java.util.Optional;
 @Service
 public class BookServiceImpl implements BookService {
 
-    private final BookRepository bookRepository;
     @Autowired
+    private final BookRepository bookRepository;
 
     public BookServiceImpl(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
 
+    @Override
     public Optional<BookEntity> getBookById(long id) {
         return bookRepository.findById(id);
     }
 
+    @Override
     public BookEntity addBook(BookEntity book) {
         return bookRepository.save(book);
     }
 
+    @Override
     public void deleteBook(long id) {
         bookRepository.deleteById(id);
     }
 
+    @Override
     public List<BookEntity> getAllBooks() {
         return bookRepository.findAll();
     }

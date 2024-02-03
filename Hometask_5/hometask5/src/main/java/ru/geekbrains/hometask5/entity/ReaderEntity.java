@@ -6,7 +6,6 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name="readers")
-
 @Schema(name="Читатель")
 public class ReaderEntity {
 
@@ -14,10 +13,9 @@ public class ReaderEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Schema(name="Id читателя")
     private final long id;
-    @Column(name = "name", nullable = false, length = 255)
-    @Schema(name="Имя и фамилия читателя", minimum ="3", maximum = "100")
+    @Column(name = "name", length = 255)
+    @Schema(minimum ="3", maximum = "100")
     private String name;
 
     public ReaderEntity() {

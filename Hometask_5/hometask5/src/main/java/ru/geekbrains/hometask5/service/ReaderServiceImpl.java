@@ -13,19 +13,21 @@ public class ReaderServiceImpl implements ReaderService {
 
     private final ReaderRepository readerRepository;
     @Autowired
-
     public ReaderServiceImpl(ReaderRepository readerRepository) {
         this.readerRepository = readerRepository;
     }
 
+    @Override
     public Optional<ReaderEntity> getReaderById(long id) {
         return readerRepository.findById(id);
     }
 
+    @Override
     public ReaderEntity addReader(ReaderEntity reader) {
         return readerRepository.save(reader);
     }
 
+    @Override
     public Optional<ReaderEntity> updateReader(long id, ReaderEntity reader) {
         readerRepository.findById(id) // returns Optional<Reader>
                 .ifPresent(reader1 -> {
@@ -35,10 +37,12 @@ public class ReaderServiceImpl implements ReaderService {
         return readerRepository.findById(id);
     }
 
+    @Override
     public void deleteReader(long id) {
         readerRepository.deleteById(id);
     }
 
+    @Override
     public List<ReaderEntity> getAllReaders() {
         return readerRepository.findAll();
     }

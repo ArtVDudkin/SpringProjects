@@ -12,10 +12,9 @@ public class BookEntity {
     public static long sequence = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Schema(name = "Id книги")
     private final long id;
-    @Column(name = "name", nullable = false, length = 255)
-    @Schema(name = "Наименование книги", minimum ="3", maximum = "50")
+    @Column(name = "name", length = 255)
+    @Schema(minimum ="3", maximum = "50")
     private final String name;
 
     public BookEntity() {
