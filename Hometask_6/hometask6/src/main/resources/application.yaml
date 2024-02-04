@@ -1,7 +1,3 @@
-application:
-  reader:
-    max-allowed-books: 3
-
 server:
   port: 8090
 

@@ -5,7 +5,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties("application.reader")
 public class ReaderProperties {
 
-    private int maxAllowedBooks;
+    private int maxAllowedBooks = 3;
 
     public int getMaxAllowedBooks() {
         return maxAllowedBooks;
