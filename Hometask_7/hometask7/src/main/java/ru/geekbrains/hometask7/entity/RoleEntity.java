@@ -27,6 +27,14 @@ public class RoleEntity {
         this.role = role;
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
     @JsonCreator
     public RoleEntity(long id, String role) {
         this.id = sequence++;

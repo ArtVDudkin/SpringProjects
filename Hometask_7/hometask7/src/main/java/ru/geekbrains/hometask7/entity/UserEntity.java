@@ -17,7 +17,7 @@ public class UserEntity {
     private final long id;
 
     @Column(name = "login")
-    private final String login;
+    private String login;
 
     @Column(name = "password")
     private String password;
@@ -61,6 +61,8 @@ public class UserEntity {
     public List<RoleEntity> getRoles() {
         return roles;
     }
+
+    public void setLogin(String login) { this.login = login; }
 
     public void setRoles(List<RoleEntity> roles) {
         this.roles = roles;

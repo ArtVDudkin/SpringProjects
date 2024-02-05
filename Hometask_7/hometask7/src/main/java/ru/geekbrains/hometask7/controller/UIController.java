@@ -50,7 +50,7 @@ public class UIController {
 
     @GetMapping("/reader/{id}")
     public String readerBooks(@PathVariable long id, Model model) {
-        model.addAttribute("reader", readerService.getReaderById(id));
+        model.addAttribute("readers", readerService.getReaderById(id));
         model.addAttribute("books", issueService.getIssuesByReader(id));
         return "booksOfReader";
     }
