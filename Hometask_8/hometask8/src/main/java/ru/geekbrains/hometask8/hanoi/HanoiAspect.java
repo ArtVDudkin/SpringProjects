@@ -34,19 +34,21 @@ public class HanoiAspect {
     public Object aroundHanoiTowerMethodsPointcut(ProceedingJoinPoint joinPoint) throws Throwable {
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
         Method method = signature.getMethod();
+        System.out.println(joinPoint.getTarget().getClass()
+                .isAnnotationPresent(Timer.class));
         try {
             if (joinPoint.getTarget().getClass()
                     .isAnnotationPresent(Timer.class) ||
                     method.isAnnotationPresent(Timer.class)) {
                 long start = System.currentTimeMillis();
-                Object proceed = joinPoint.proceed();
-                long finish = System.currentTimeMillis();
+                Object result = joinPoint.proceed();
+                long duration = System.currentTimeMillis() - start;
                 log.info("Время выполнения метода {} " +
-                        " {} наносекунд", method.getName().toLowerCase(), finish - start);
-                return proceed;
+                        " {} милисекунд", method.getName(), duration);
+                return result;
             } else {
-                Object proceed = joinPoint.proceed();
-                return proceed;
+                Object result = joinPoint.proceed();
+                return result;
             }
         } catch (Throwable e) {
             if (method.isAnnotationPresent(RecoverException.class)) {
