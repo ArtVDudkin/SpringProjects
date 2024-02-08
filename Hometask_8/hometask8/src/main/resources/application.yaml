@@ -1,0 +1,3 @@
+application:
+  tower:
+    diskQty: 3
