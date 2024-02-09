@@ -16,8 +16,8 @@ public class Hometask8Application {
 	public static void main(String[] args) {
 		ConfigurableApplicationContext context = SpringApplication.run(Hometask8Application.class, args);
 
-		HanoiTower tower = new HanoiTower();
-		tower.start();
+		HanoiTower hanoiBean = context.getBean(HanoiTower.class);
+		hanoiBean.start();
 	}
 
 }
