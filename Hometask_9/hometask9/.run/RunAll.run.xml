@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="RunAll" type="CompoundRunConfigurationType">
+    <toRun name="DiscoveryService" type="Application" />
+    <toRun name="BookService" type="Application" />
+    <toRun name="ReaderService" type="Application" />
+    <toRun name="IssuerService" type="Application" />
+    <method v="2" />
+  </configuration>
+</component>
