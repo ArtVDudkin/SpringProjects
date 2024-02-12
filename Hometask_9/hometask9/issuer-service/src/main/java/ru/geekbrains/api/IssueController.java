@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.geekbrains.BookProvider;
+import ru.geekbrains.ReaderProvider;
 
 import java.time.ZoneId;
 import java.util.*;
@@ -16,11 +17,14 @@ public class IssueController {
 
     private final Faker faker;
     private final BookProvider bookProvider;
+    private final ReaderProvider readerProvider;
     private final List<Issue> issues;
 
-    public IssueController(BookProvider bookProvider) {
+    public IssueController(BookProvider bookProvider,
+                           ReaderProvider readerProvider) {
         this.faker = new Faker();
         this.bookProvider = bookProvider;
+        this.readerProvider = readerProvider;
         this.issues = new ArrayList<>();
 
         refreshData();
@@ -45,9 +49,10 @@ public class IssueController {
 
             Date between = faker.date().between(startOfYear(), endOfYear());
             issue.setIssuedAt(between.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-            issue.setBookId(bookProvider.getRandomBookId());
-            issue.setReaderId(UUID.randomUUID());
-
+            issue.setBook(bookProvider.getRandomBook());
+//            issue.setBookId(bookProvider.getRandomBookId());
+//            issue.setReaderId(UUID.randomUUID());
+            issue.setReader(readerProvider.getRandomReader());
             issues.add(issue);
         }
     }

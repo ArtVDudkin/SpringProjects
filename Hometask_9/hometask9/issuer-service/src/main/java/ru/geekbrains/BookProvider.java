@@ -13,7 +13,7 @@ import ru.geekbrains.api.Book;
 
 import java.util.List;
 import java.util.UUID;
-import java.util.concurrent.ThreadLocalRandom;
+
 
 @Service
 public class BookProvider {
@@ -42,6 +42,15 @@ public class BookProvider {
         return randomBook.getId();
     }
 
+    public Book getRandomBook() {
+        Book randomBook = webClient.get()
+                .uri("http://book-service/api/book/random")
+//      .uri(getBookServiceIp() + "/api/book/random")
+                .retrieve()
+                .bodyToMono(Book.class)
+                .block();
+        return randomBook;
+    }
     // round robbin
 //  private String getBookServiceIp() {
 //    Application application = eurekaClient.getApplication("BOOK-SERVICE");
