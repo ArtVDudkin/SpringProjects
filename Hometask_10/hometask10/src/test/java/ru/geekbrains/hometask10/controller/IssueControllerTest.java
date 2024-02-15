@@ -99,7 +99,6 @@ class IssueControllerTest extends JUnitSpringBootBase {
                     .anyMatch(it -> Objects.equals(it.getBookId(), issueResponse.getBookId()));
             Assertions.assertTrue(found);
         }
-
     }
-    
+
 }

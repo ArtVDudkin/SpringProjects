@@ -100,10 +100,10 @@ class BookControllerTest extends JUnitSpringBootBase {
     @Test
     void addBook() {
         // подготовка данных: узнаем самый большой id и создаем новую книгу
-//        Long maxId = jdbcTemplate.queryForObject("select max(id) from books", Long.class);
+        Long maxId = jdbcTemplate.queryForObject("select max(id) from books", Long.class);
         JUnitBookResponse request = new JUnitBookResponse();
         request.setName("Max id book");
-//        request.setId(maxId + 1L);
+        request.setId(maxId + 1L);
         // действие: добавляем в репозиторий новую книгу
         JUnitBookResponse responseBody = webTestClient.post()
                 .uri("/book")
