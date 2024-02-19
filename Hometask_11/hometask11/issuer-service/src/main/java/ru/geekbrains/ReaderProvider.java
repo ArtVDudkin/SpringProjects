@@ -3,8 +3,10 @@ package ru.geekbrains;
 import org.springframework.cloud.client.loadbalancer.reactive.ReactorLoadBalancerExchangeFilterFunction;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
+import ru.gb.timer.Timer;
 import ru.geekbrains.api.Reader;
 
+@Timer
 @Service
 public class ReaderProvider {
 

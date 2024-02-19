@@ -9,12 +9,13 @@ import org.springframework.cloud.client.loadbalancer.reactive.ReactorLoadBalance
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.*;
 import reactor.core.publisher.Mono;
+import ru.gb.timer.Timer;
 import ru.geekbrains.api.Book;
 
 import java.util.List;
 import java.util.UUID;
 
-
+@Timer
 @Service
 public class BookProvider {
 
