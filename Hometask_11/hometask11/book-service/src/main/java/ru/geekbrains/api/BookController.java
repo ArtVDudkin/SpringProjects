@@ -4,11 +4,13 @@ import com.github.javafaker.Faker;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import ru.gb.timer.Timer;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+@Timer
 @RestController
 @RequestMapping("/api/book")
 public class BookController {
@@ -36,10 +38,12 @@ public class BookController {
         this.books = List.copyOf(books);
     }
 
+
     @GetMapping
     public List<Book> getAll() {
         return books;
     }
+
 
     @GetMapping("/random")
     public Book getRandom() {
